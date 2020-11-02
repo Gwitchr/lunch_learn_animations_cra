@@ -1,31 +1,39 @@
-import React, { useState, use } from "react";
-import { useInterval } from "../hooks";
+import React, { useState, useRef, useEffect } from "react";
 
 import logo from "../assets/spoton.png";
 
 function Intervals({ selArea, selEx, areaId }) {
+  const animElem = useRef();
   const [animate, setAnimate] = useState(false);
-  const [initial, setInitial] = useState();
-  const [xPos, setXPos] = useState(0);
+  const [elem, setElem] = useState();
   const toggle = () => {
     setAnimate(!animate);
+    if (animate) {
+      elem.play();
+    } else {
+      elem.pause();
+    }
   };
-  useInterval(
-    () => {
-      if (!initial) {
-        setInitial(new Date());
-      }
-      let timePassed = Date.now() - initial;
-      let nextPos = timePassed / 5;
-      if (nextPos > 600) {
-        nextPos = 0;
-        setAnimate(false);
-        setInitial(undefined);
-      }
-      setXPos(nextPos);
-    },
-    animate ? 20 : null
-  );
+  useEffect(() => {
+    if (animElem.current) {
+      const newElement = animElem.current.animate(
+        [
+          { transform: "rotate(0) translate3D(-50%, -50%, 0)", color: "#000" },
+          { color: "#431236", offset: 0.3 },
+          {
+            transform: "rotate(360deg) translate3D(-50%, -50%, 0)",
+            color: "#000"
+          }
+        ],
+        {
+          duration: 3000,
+          iterations: Infinity
+        }
+      );
+      setElem(newElement);
+    }
+  }, []);
+
   return (
     <>
       <div
@@ -36,9 +44,9 @@ function Intervals({ selArea, selEx, areaId }) {
         <section className="inner_row title">
           <h2>With intervals</h2>
         </section>
-        <section className="inner_row animation abs_cont">
+        <section className="inner_row animation abs_cont flex-centered">
           <img
-            style={{ transform: `translateX(${xPos}px)` }}
+            ref={animElem}
             className={`logo img-fluid `}
             src={logo}
             alt="spotOn!"
