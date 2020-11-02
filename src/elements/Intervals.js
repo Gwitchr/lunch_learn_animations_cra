@@ -50,7 +50,10 @@ function Intervals({ selArea, selEx, areaId }) {
           </button>
         </section>
       </div>
-      <div className={`code_section `}>
+      <div className={`code_section abs_cont `}>
+        <span className="red_button" />
+        <span className="yellow_button" />
+        <span className="green_button" />
         <pre className="pre">
           {`
 function draw(timePassed) {

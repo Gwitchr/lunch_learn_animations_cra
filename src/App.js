@@ -40,11 +40,14 @@ function App() {
           </button>
         </section>
       </div>
-      <div className={`code_section `}>
+      <div className={`code_section abs_cont `}>
+        <span className="red_button" />
+        <span className="yellow_button" />
+        <span className="green_button" />
         <pre className="pre">
           {`
   <img
-    className={\`logo \${toggle1 && "appear"} \`}
+    className={\`logo \${show && "appear"} \`}
     src={logo}
     alt="spotOn!"
   />
