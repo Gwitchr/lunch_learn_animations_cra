@@ -69,14 +69,14 @@ function Intervals({ selArea, selEx, areaId }) {
         <pre className="pre">
           {`
 element.animate(
-[
-  { transform: 'rotate(0) translate3D(-50%, -50%, 0)' },
-  {  offset: 0.3},
-  { transform: 'rotate(360deg) translate3D(-50%, -50%, 0)' }
-], {
-  duration: 3000,
-  iterations: Infinity
-}
+  [
+    { transform: 'rotate(0) translate3D(-50%, -50%, 0)' },
+    {  offset: 0.3},
+    { transform: 'rotate(360deg) translate3D(-50%, -50%, 0)' }
+  ], {
+    duration: 3000,
+    iterations: Infinity
+  }
 )
     `}
         </pre>

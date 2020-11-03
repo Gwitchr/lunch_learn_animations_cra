@@ -35,7 +35,7 @@ function Intervals({ selArea, selEx, areaId }) {
         <pre className="pre">
           {`
 function draw(timePassed) {
-logo.style.left = timePassed / 5 + 'px';
+  logo.style.left = timePassed / 5 + 'px';
 }
     `}
         </pre>
