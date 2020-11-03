@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import logo from "../assets/spoton.png";
 
-function animateFn({ timing, draw, duration }) {
+const totalPx = 500;
+
+function animateFn({ timing, draw, duration, end }) {
   let start = performance.now();
 
   requestAnimationFrame(function animate(time) {
@@ -17,26 +19,60 @@ function animateFn({ timing, draw, duration }) {
 
     if (timeFraction < 1) {
       requestAnimationFrame(animate);
+    } else {
+      end();
     }
   });
 }
 
+const availEase = [
+  {
+    name: "linear",
+    ease(timeFraction) {
+      return Math.pow(timeFraction, 2);
+    }
+  },
+  {
+    name: "quad",
+    ease(timeFraction) {
+      return Math.pow(timeFraction, 2);
+    }
+  },
+  {
+    name: "cubic",
+    ease(timeFraction) {
+      return Math.pow(timeFraction, 3);
+    }
+  },
+  {
+    name: "arc",
+    ease(timeFraction) {
+      return 1 - Math.sin(Math.acos(timeFraction));
+    }
+  }
+];
+
 function RequestFrame({ selArea, selEx, areaId }) {
   const [animate, setAnimate] = useState(false);
+  const [selEase, setSelEase] = useState(0);
+  const [totalTime, setTotalTime] = useState(1);
   const [xPos, setXPos] = useState(0);
   const toggle = () => {
     setAnimate(!animate);
   };
+  const getValue = ({ target: { value } }) => {
+    setSelEase(+value || 0);
+  };
   useEffect(() => {
     if (animate) {
       animateFn({
-        duration: 1000,
-        timing: function(timeFraction) {
-          return timeFraction;
-        },
+        duration: totalTime * 1000,
+        timing: availEase[selEase].ease || availEase[0].ease,
         draw: function(progress) {
-          console.log("is it happening");
-          setXPos(progress * 400);
+          setXPos(progress * totalPx);
+        },
+        end: function() {
+          setAnimate(false);
         }
       });
     }
@@ -62,6 +98,18 @@ function RequestFrame({ selArea, selEx, areaId }) {
         </section>
         <section className="inner_row ">
           <div className="row justify-content-end">
+            <div className="col-3">
+              <div className="form-group">
+                <label for="">Total time in s</label>
+                <input
+                  onChange={({ target: { value } }) => setTotalTime(+value)}
+                  class="form-control"
+                  min={0}
+                  type="number"
+                  value={totalTime}
+                />
+              </div>
+            </div>
             <div className="col-4">
               <div class="form-group">
                 <label for="exampleFormControlSelect1">Ease select</label>
@@ -70,11 +118,10 @@ function RequestFrame({ selArea, selEx, areaId }) {
                   class="form-control"
                   id="exampleFormControlSelect1"
                 >
-                  <option val="linear">linear</option>
-                  <option val="pow">pow</option>
-                  <option val="pow3">pow3</option>
-                  <option val="arc">arc</option>
-                  <option val="bounce">bounce</option>
+                  <option val="linear">Select easing... </option>
+                  {availEase.map(({ name }, i) => (
+                    <option value={i}>{name}</option>
+                  ))}
                 </select>
               </div>
             </div>

@@ -97,33 +97,38 @@ element.animate(
             alt="spotOn!"
           />
         </section>
-        <section className="inner_row activate">
-          <button
-            onClick={toggleDirection}
-            disabled={!animate}
-            className="btn btn-primary lower_btn"
-            id="toggle_1"
-          >
-            {direction ? "Reverse" : "Forward"}
-          </button>
-          <button
-            onClick={toggle}
-            className="btn btn-primary lower_btn "
-            id="toggle_1"
-          >
-            {animate ? "Pause" : "Play"}
-          </button>
-          <div className="slidecontainer ">
-            <div className="d-flex flex-centered h-100">
-              <input
-                type="range"
-                min="1"
-                max="100"
-                value={currFrame}
-                onChange={getValue}
-                className="slider"
-                id="myRange"
-              />
+        <section className="inner_row">
+          <div className="row justify-content-end">
+            <div className="col-5 ">
+              <div class="form-group">
+                <label for="formControlRange">Set Frame</label>
+                <input
+                  type="range"
+                  onChange={getValue}
+                  value={currFrame}
+                  class="form-control-range"
+                  id="formControlRange"
+                />
+              </div>
+            </div>
+            <div className="col-2 d-flex align-items-center">
+              <button
+                onClick={toggleDirection}
+                disabled={!animate}
+                className="btn btn-primary lower_btn btn-block"
+                id="toggle_1"
+              >
+                {direction ? "Reverse" : "Forward"}
+              </button>
+            </div>
+            <div className="col-2 d-flex align-items-center">
+              <button
+                onClick={toggle}
+                className="btn btn-primary lower_btn  btn-block"
+                id="toggle_1"
+              >
+                {animate ? "Pause" : "Play"}
+              </button>
             </div>
           </div>
         </section>
