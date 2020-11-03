@@ -76,7 +76,7 @@ function RequestFrame({ selArea, selEx, areaId }) {
         }
       });
     }
-  }, [animate]);
+  }, [animate, selEase, totalTime]);
 
   return (
     <>
