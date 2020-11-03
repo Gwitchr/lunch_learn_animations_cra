@@ -78,6 +78,15 @@ element.animate(
     iterations: Infinity
   }
 )
+
+const toggle = () => {
+  setAnimate(!animate);
+  if (!animate) {
+    elem.play();
+  } else {
+    elem.pause();
+  }
+};
     `}
         </pre>
       </div>
