@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+
 import "./App.css";
 
-import { Intervals, Timeline } from "./elements";
+import { Intervals, Timeline, RequestFrame } from "./elements";
 
 import logo from "./assets/spoton.png";
 
@@ -28,16 +29,20 @@ function App() {
             alt="spotOn!"
           />
         </section>
-        <section className="inner_row activate">
-          <button
-            onClick={() => {
-              setToggle1(!toggle1);
-            }}
-            className="btn lower_btn"
-            id="toggle_1"
-          >
-            Play{" "}
-          </button>
+        <section className="inner_row">
+          <div className="row h-100 justify-content-end">
+            <div className="col-2 d-flex align-items-center">
+              <button
+                onClick={() => {
+                  setToggle1(!toggle1);
+                }}
+                className="btn btn-primary lower_btn btn-block"
+                id="toggle_1"
+              >
+                Play{" "}
+              </button>
+            </div>
+          </div>
         </section>
       </div>
       <div className={`code_section abs_cont `}>
@@ -55,7 +60,8 @@ function App() {
         </pre>
       </div>
       <Intervals selArea={selArea} areaId={2} selEx={selEx} />
-      <Timeline selArea={selArea} areaId={3} selEx={selEx} />
+      <RequestFrame selArea={selArea} areaId={3} selEx={selEx} />
+      <Timeline selArea={selArea} areaId={4} selEx={selEx} />
     </main>
   );
 }

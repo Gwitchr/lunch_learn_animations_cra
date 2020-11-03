@@ -62,6 +62,25 @@ function Intervals({ selArea, selEx, areaId }) {
 
   return (
     <>
+      <div className={`code_section abs_cont `}>
+        <span className="red_button" />
+        <span className="yellow_button" />
+        <span className="green_button" />
+        <pre className="pre">
+          {`
+element.animate(
+[
+  { transform: 'rotate(0) translate3D(-50%, -50%, 0)' },
+  {  offset: 0.3},
+  { transform: 'rotate(360deg) translate3D(-50%, -50%, 0)' }
+], {
+  duration: 3000,
+  iterations: Infinity
+}
+)
+    `}
+        </pre>
+      </div>
       <div
         onMouseOver={() => selArea(areaId)}
         id="hero"
@@ -82,12 +101,16 @@ function Intervals({ selArea, selEx, areaId }) {
           <button
             onClick={toggleDirection}
             disabled={!animate}
-            className="btn lower_btn"
+            className="btn btn-primary lower_btn"
             id="toggle_1"
           >
             {direction ? "Reverse" : "Forward"}
           </button>
-          <button onClick={toggle} className="btn lower_btn" id="toggle_1">
+          <button
+            onClick={toggle}
+            className="btn btn-primary lower_btn "
+            id="toggle_1"
+          >
             {animate ? "Pause" : "Play"}
           </button>
           <div className="slidecontainer ">
@@ -104,25 +127,6 @@ function Intervals({ selArea, selEx, areaId }) {
             </div>
           </div>
         </section>
-      </div>
-      <div className={`code_section abs_cont `}>
-        <span className="red_button" />
-        <span className="yellow_button" />
-        <span className="green_button" />
-        <pre className="pre">
-          {`
-element.animate(
-  [
-    { transform: 'rotate(0) translate3D(-50%, -50%, 0)' },
-    {  offset: 0.3},
-    { transform: 'rotate(360deg) translate3D(-50%, -50%, 0)' }
-  ], {
-    duration: 3000,
-    iterations: Infinity
-  }
-)
-      `}
-        </pre>
       </div>
     </>
   );

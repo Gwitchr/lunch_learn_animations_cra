@@ -28,6 +28,18 @@ function Intervals({ selArea, selEx, areaId }) {
   );
   return (
     <>
+      <div className={`code_section abs_cont `}>
+        <span className="red_button" />
+        <span className="yellow_button" />
+        <span className="green_button" />
+        <pre className="pre">
+          {`
+function draw(timePassed) {
+logo.style.left = timePassed / 5 + 'px';
+}
+    `}
+        </pre>
+      </div>
       <div
         onMouseOver={() => selArea(areaId)}
         id="hero"
@@ -44,23 +56,19 @@ function Intervals({ selArea, selEx, areaId }) {
             alt="spotOn!"
           />
         </section>
-        <section className="inner_row activate">
-          <button onClick={toggle} className="btn lower_btn" id="toggle_1">
-            {animate ? "Reset" : "Play"}
-          </button>
+        <section className="inner_row">
+          <div className="row h-100 justify-content-end">
+            <div className="col-2 d-flex align-items-center">
+              <button
+                onClick={toggle}
+                className="btn btn-primary lower_btn btn-block"
+                id="toggle_1"
+              >
+                {animate ? "Reset" : "Play"}
+              </button>
+            </div>
+          </div>
         </section>
-      </div>
-      <div className={`code_section abs_cont `}>
-        <span className="red_button" />
-        <span className="yellow_button" />
-        <span className="green_button" />
-        <pre className="pre">
-          {`
-function draw(timePassed) {
-  logo.style.left = timePassed / 5 + 'px';
-}
-      `}
-        </pre>
       </div>
     </>
   );
