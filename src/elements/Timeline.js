@@ -118,7 +118,7 @@ element.animate(
                 className="btn btn-primary lower_btn btn-block"
                 id="toggle_1"
               >
-                {direction ? "Reverse" : "Forward"}
+                {direction ? "Forwad" : "Reverse"}
               </button>
             </div>
             <div className="col-2 d-flex align-items-center">
